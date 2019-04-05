@@ -1,0 +1,292 @@
+$color-primary: #FF4102;
+$color-black: black;
+
+body {
+  padding: 0;
+  margin: 0;
+  font-family: "Helvetica";
+  font-size: 13px;
+}
+
+a {
+  text-decoration: none;
+}
+
+a:hover {
+  color: $color-primary;
+}
+
+.text-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+
+
+.checkbox {
+    position: relative;
+    width: 16px;
+    height: 16px;
+    margin: 0;
+    display: inline-block;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    -o-user-select: none;
+    user-select: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    outline: 0;
+}
+
+.checkbox:after {
+    content: 'Menu';
+    position: absolute;
+    display: block;
+    z-index: 1;
+    width: 50px;
+    height: 16px;
+    border: 0;
+    border-radius: 2px;
+    text-align: center;
+    color: white;
+    padding-top: 5px;
+}
+
+.checkbox[type=checkbox]:before {
+    position: absolute;
+    left: 2px;
+    z-index: 2;
+    opacity: 0;
+    width: 100%;
+    height: 100%;
+    color: #f6ac4f;
+}
+
+.checkbox-custom[type=checkbox]:checked:before {
+    content: '';
+    position: absolute;
+    top: 0px;
+    opacity: 1;
+    left: 0px;
+    border: 1px solid #f6ac4f;
+    border-radius: 2px;
+}
+
+
+.dropdown {
+
+  &__wrapper {
+    padding: 18px;
+    min-height: 200px;
+    background: $color-black;
+    border-top: 2px solid $color-primary;
+    visibility: hidden; /* hides sub-menu */
+    opacity: 0;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    transform: translateY(-2em);
+    z-index: -1;
+    transition: all 0.3s ease-in-out 0s, visibility 0s linear 0.3s, z-index 0s linear 0.01s;
+  }
+
+  &:focus .dropdown__wrapper,
+  &:focus-within .dropdown__wrapper,
+  &:hover .dropdown__wrapper {
+    visibility: visible; /* shows sub-menu */
+    opacity: 1;
+    z-index: 1;
+    transform: translateY(0%);
+    transition-delay: 0s, 0s, 0.3s; /* this removes the transition delay so the menu will be visible while the other styles transition */
+  }
+
+  &__content {
+    max-width: 900px;
+    margin: auto;
+    display: flex;
+  }
+
+  &__col-3 {
+    width: 33%;
+    display: inline-block;
+    display: flex;
+    flex: 1;
+    align-content: top;
+  }
+
+  &__col-2 {
+    width: 49%;
+    display: inline-block;
+    flex: 1;
+    align-content: top;
+  }
+
+  &__social-links {
+    a {
+      color: $color-primary;
+    }
+  }
+
+  &__title {
+    padding-top: 15px;
+    font-weight: 700;
+  }
+
+  &__advert {
+    border: 2px dotted $color-primary;
+    width: 100%;
+    height: 100%;
+    margin: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    h2 {
+      text-transform: uppercase;
+    }
+  }
+
+  &:hover {
+    &::before {
+      content: '';
+      background: $color-black;
+      position: absolute;
+      top: 65px;
+      left: 0;
+      right: 0;
+      height: 100vh;
+      opacity: 0.3;
+    }
+  }
+}
+
+.drawer {
+  height: 100vh;
+  background: black;
+  width: 300px;
+  position: fixed;
+  top: 0;
+  left: -360px;
+  transition: 0.6s;
+  z-index: 3;
+  padding: 15px;
+}
+
+.menu--toggle:checked {
+  &::after {
+    content: '';
+    display: block;
+    background: $color-primary;
+    position: absolute;
+    top: -3px;
+    left: -3px;
+    right:0;
+    height: 100vh;
+    width: 100vw;
+    z-index:2;
+    opacity: 0.75;
+  }
+
+  ~ .drawer {
+      transition: 0.6s;
+      left: 0;
+  }
+}
+
+
+#main-navigation {
+  background: $color-black;
+  color: white;
+  position: relative;
+
+  nav {
+    max-width: 900px;
+    margin: auto;
+  }
+
+  ul {
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  li {
+    display: inline-block;
+
+    &.dropdown::hover .dropdown__wrapper {
+      display: block;
+    }
+  }
+
+  a.btn {
+    color: white;
+    padding: 25px 15px;
+    display: inline-block;
+    text-decoration: none;
+    text-transform: uppercase;
+    font-weight: 300;
+    transform: skewX(-45deg);
+
+    span {
+      transform: skewX(45deg);
+      display: inline-block;
+    }
+  }
+
+  .link {
+    display: block;
+    color: white;
+    line-height: 1.5rem;
+    font-size: 13px;
+
+    &--title {
+      font-size: 15px;
+    }
+  }
+}
+
+.btn {
+  &:focus,
+  &:focus-within,
+  &:hover {
+    background-color: $color-primary;
+    opacity: 0.8;
+  }
+}
+
+.btn--primary {
+  background-color: $color-primary;
+}
+
+.icon {
+
+  &--logo {
+    content: '';
+    width: 100px;
+    height: 65px;
+    border-right: 1px solid $color-primary;
+    border-left: 1px solid $color-primary;
+    position: absolute;
+    left: 50px;
+    top: 0;
+  }
+}
+
+.link {
+  cursor: pointer;
+
+  &__toggle {
+   cursor: pointer;
+   position: absolute;
+   width: 40px;
+   left: 0;
+   height: 55px;
+   padding: 5px;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+  }
+}

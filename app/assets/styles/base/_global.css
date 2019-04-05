@@ -1,0 +1,37 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+  -webkit-font-smoothing: antialiased;
+  color: $color-black;
+}
+
+h2 {
+  text-transform: uppercase;
+  margin-bottom: 40px;
+  font-size: 1.5em;
+}
+
+h4 {
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+section {
+  padding: 50px 0;
+}
+
+.no-padding {
+  padding: 0 !important;
+}
+
+.full-width {
+  width: 100%;
+}
+
+.margin-t-md--17 {
+  @mixin atMedium {
+    margin-top: -17px;
+  }
+}
