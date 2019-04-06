@@ -11,13 +11,13 @@ gulp.task('previewDist', function() {
     browserSync.init({
         notify: false,
         server: {
-            baseDir: 'public'
+            baseDir: 'dist'
         }
     });
 });
 
 gulp.task('deleteDistFolder',['icons'], function() {
-    return del('./public');
+    return del('./dist');
 });
 
 gulp.task('optimizeImages',['deleteDistFolder'], function() {
@@ -27,7 +27,7 @@ gulp.task('optimizeImages',['deleteDistFolder'], function() {
         interlaced: true,
         multipass: true
     }))
-    .pipe(gulp.dest('./public/assets/images'))
+    .pipe(gulp.dest('./dist/assets/images'))
 });
 
 gulp.task('copyGeneralFiles', ['deleteDistFolder'], function() {
@@ -41,7 +41,7 @@ gulp.task('copyGeneralFiles', ['deleteDistFolder'], function() {
         '!./app/temp/**'
     ];
     return gulp.src(pathsToCopy)
-        .pipe(gulp.dest('./public'));
+        .pipe(gulp.dest('./dist'));
 });
 
 gulp.task('useminTrigger', ['deleteDistFolder'], function(){
@@ -54,7 +54,7 @@ gulp.task('usemin', ['styles', 'scripts'], function(){
         css: [function() {return rev()},function() {return cssnano()}],
         js: [function(){return rev()}, function(){return uglify()}]
     }))
-    .pipe(gulp.dest('./public'))
+    .pipe(gulp.dest('./dist'))
 });
 
 gulp.task('build',['deleteDistFolder','copyGeneralFiles','optimizeImages','useminTrigger']);
