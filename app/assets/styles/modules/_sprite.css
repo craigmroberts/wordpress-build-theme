@@ -3,34 +3,34 @@
 */
 
     .icon {
-        background-image: url('../images/sprites/sprite-c71c5560.svg');
+        background-image: url('../images/sprites/sprite-bc0048c2.svg');
         display: block;
     }
     .no-svg .icon {
-        background-image: url('../images/sprites/sprite-c71c5560.png');
+        background-image: url('../images/sprites/sprite-bc0048c2.png');
     }
     .icon--facebook {
-        width: 24px;
-        height: 45px;
-        background-position: 81.59509202453988% 36.885245901639344%;
+        width: 22px;
+        height: 43px;
+        background-position: 81.36645962732919% 35.833333333333336%;
     }
     .icon--instagram {
-        width: 45px;
-        height: 45px;
+        width: 43px;
+        height: 43px;
         background-position: 0 100%;
     }
     .icon--logo {
-        width: 133px;
-        height: 122px;
+        width: 131px;
+        height: 120px;
         background-position: 0 0;
     }
     .icon--twitter {
-        width: 54px;
-        height: 45px;
+        width: 52px;
+        height: 43px;
         background-position: 100% 0;
     }
     .icon--youtube {
-        width: 37px;
-        height: 44px;
-        background-position: 30% 99.1869918699187%;
+        width: 35px;
+        height: 42px;
+        background-position: 29.054054054054053% 99.17355371900827%;
     }

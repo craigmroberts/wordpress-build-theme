@@ -1,3 +1,9 @@
+var theme = {
+  name: 'omgracing',
+  wpFilePath : './dist/',
+  wpThemePath : 'wp-content/themes/'
+}
+
 var gulp = require('gulp'),
     imagemin = require('gulp-imagemin'),
     del = require('del'),
@@ -11,13 +17,13 @@ gulp.task('previewDist', function() {
     browserSync.init({
         notify: false,
         server: {
-            baseDir: 'dist'
+            baseDir: theme.wpFilePath + theme.wpThemePath + theme.name
         }
     });
 });
 
 gulp.task('deleteDistFolder',['icons'], function() {
-    return del('./dist');
+    return del('./' + theme.wpFilePath + theme.wpThemePath + theme.name);
 });
 
 gulp.task('optimizeImages',['deleteDistFolder'], function() {
@@ -27,13 +33,12 @@ gulp.task('optimizeImages',['deleteDistFolder'], function() {
         interlaced: true,
         multipass: true
     }))
-    .pipe(gulp.dest('./dist/assets/images'))
+    .pipe(gulp.dest('./' + theme.wpFilePath + theme.wpThemePath + theme.name + '/assets/images'))
 });
 
 gulp.task('copyGeneralFiles', ['deleteDistFolder'], function() {
     var pathsToCopy = [
         './app/**/*',
-        '!./app/index.html',
         '!./app/assets/images/**',
         '!./app/assets/styles/**',
         '!./app/assets/scripts/**',
@@ -41,7 +46,7 @@ gulp.task('copyGeneralFiles', ['deleteDistFolder'], function() {
         '!./app/temp/**'
     ];
     return gulp.src(pathsToCopy)
-        .pipe(gulp.dest('./dist'));
+        .pipe(gulp.dest('./' + theme.wpFilePath + theme.wpThemePath + theme.name));
 });
 
 gulp.task('useminTrigger', ['deleteDistFolder'], function(){
@@ -54,7 +59,7 @@ gulp.task('usemin', ['styles', 'scripts'], function(){
         css: [function() {return rev()},function() {return cssnano()}],
         js: [function(){return rev()}, function(){return uglify()}]
     }))
-    .pipe(gulp.dest('./dist'))
+    .pipe(gulp.dest('./' + theme.wpFilePath + theme.wpThemePath + theme.name))
 });
 
 gulp.task('build',['deleteDistFolder','copyGeneralFiles','optimizeImages','useminTrigger']);

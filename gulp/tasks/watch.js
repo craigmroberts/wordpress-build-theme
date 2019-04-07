@@ -11,9 +11,10 @@ gulp.task('watch', function() {
         }
     });
 
-    watch('./app/index.html', function() {
+    watch(['./app/**/*.html','./app/**/*.php'], function() {
+        gulp.start(['copyGeneralFiles']);
         browserSync.reload();
-    })
+    });
 
     watch('./app/assets/styles/**/*.css', function() {
         gulp.start('cssInject');
@@ -25,7 +26,7 @@ gulp.task('watch', function() {
 });
 
 gulp.task('cssInject', ['styles'], function() {
-    return gulp.src('./app/temp/styles/styles.css')
+    return gulp.src('./app/style.css')
     .pipe(browserSync.stream());
 });
 
